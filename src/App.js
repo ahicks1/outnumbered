@@ -3,6 +3,7 @@ import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 import {createMuiTheme} from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
 import Paper from '@material-ui/core/Paper';
 import logo from './logo.svg';
 import './App.css';
@@ -25,18 +26,35 @@ const theme = createMuiTheme({
   
 });
 
-class Home extends React.Component {
 
-  joinMatch() {
+
+  function Home() {
+    const [name, setName] = React.useState('');
+    const [room, setRoom] = React.useState('');
     
-  }
 
-  render() {
     return <div className="App">
         <Box mt={3}>
           <Typography variant="h2" gutterBottom>
           Welcome to Outnumbe.red
           </Typography>
+          <form action="/action_page" method="GET">
+          <Box><TextField
+            id="standard-name"
+            label="Name"
+            type="text"
+            value={name}
+            onChange={e => setName(e.target.value)}
+            margin="normal"
+          /></Box>
+          <Box><TextField
+            id="standard-name"
+            label="Room Code"
+            value={room}
+            onChange={e => setRoom(e.target.value)}
+            margin="normal"
+          /></Box>
+           <input type="submit" value="Submit"></input>
           <Box m={2}>
             <Button 
                 variant="contained" 
@@ -46,7 +64,7 @@ class Home extends React.Component {
             >
               Join Game
             </Button>
-          </Box>
+          </Box></form>
           <Box m={2}>
             <Button size="large" color="primary" component={Link} to="/start">
               Start Game
@@ -55,7 +73,7 @@ class Home extends React.Component {
         </Box>
       </div>
   }
-}
+
 
 function App() {
   return (
